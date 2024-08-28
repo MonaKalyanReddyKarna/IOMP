@@ -27,8 +27,24 @@ import {
   Scatter,
   ZAxis,
 } from "recharts";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "./ui/chart";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884D8"];
+
+const chartConfig = {
+  affectedPeople: {
+    label: "Affected People",
+  },
+  desktop: {
+    label: "Desktop",
+    color: "hsl(var(--chart-1))",
+  },
+} satisfies ChartConfig;
 
 export function Charts({ disasters }: { disasters: any }) {
   const [activePieIndex, setActivePieIndex] = useState(null);
@@ -106,16 +122,23 @@ export function Charts({ disasters }: { disasters: any }) {
             <CardTitle>Disasters by Type</CardTitle>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={barChartData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="type" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="count" fill="#8884d8" />
+            <ChartContainer config={chartConfig}>
+              <BarChart accessibilityLayer data={barChartData}>
+                <CartesianGrid vertical={false} />
+                <XAxis
+                  dataKey="type"
+                  tickLine={false}
+                  tickMargin={10}
+                  axisLine={false}
+                  tickFormatter={(value) => value}
+                />
+                <ChartTooltip
+                  cursor={false}
+                  content={<ChartTooltipContent hideLabel />}
+                />
+                <Bar dataKey="count" fill="var(--color-desktop)" radius={8} />
               </BarChart>
-            </ResponsiveContainer>
+            </ChartContainer>
           </CardContent>
         </Card>
         <Card>
@@ -123,21 +146,57 @@ export function Charts({ disasters }: { disasters: any }) {
             <CardTitle>Affected People Over Time</CardTitle>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={lineChartData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
+            <ChartContainer
+              config={chartConfig}
+              className="aspect-auto h-[300px] w-full"
+            >
+              <LineChart
+                accessibilityLayer
+                data={lineChartData}
+                margin={{
+                  left: 12,
+                  right: 12,
+                }}
+              >
+                <CartesianGrid vertical={false} />
+                <XAxis
+                  dataKey="date"
+                  tickLine={false}
+                  axisLine={false}
+                  tickMargin={8}
+                  minTickGap={32}
+                  tickFormatter={(value) => {
+                    const date = new Date(value);
+                    return date.toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                    });
+                  }}
+                />
+                <ChartTooltip
+                  content={
+                    <ChartTooltipContent
+                      className="w-[150px]"
+                      nameKey="affectedPeople"
+                      labelFormatter={(value) => {
+                        return new Date(value).toLocaleDateString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric",
+                        });
+                      }}
+                    />
+                  }
+                />
                 <Line
-                  type="monotone"
-                  data={lineChartData}
                   dataKey="affectedPeople"
-                  stroke="#82ca9d"
+                  type="monotone"
+                  stroke={`var(--color-desktop)`}
+                  strokeWidth={2}
+                  dot={false}
                 />
               </LineChart>
-            </ResponsiveContainer>
+            </ChartContainer>
           </CardContent>
         </Card>
       </div>
