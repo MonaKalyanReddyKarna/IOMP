@@ -26,19 +26,35 @@ import {
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
-import { useState } from "react";
+import { CalendarIcon, ExternalLink } from "lucide-react";
+import { useMemo, useState } from "react";
+import { Disaster } from "@/types/disaster";
+import Link from "next/link";
+import { DateRange } from "react-day-picker";
 
-export function DisasterTable({ disasters }: { disasters: any }) {
+interface DisasterTableProps {
+  disasters: Disaster[];
+}
+
+export function DisasterTable({ disasters }: DisasterTableProps) {
   const [filter, setFilter] = useState("all");
-  const [dateRange, setDateRange] = useState({ from: null, to: null });
+  const [dateRange, setDateRange] = useState<DateRange>({
+    from: null!,
+    to: null!,
+  });
+  const disasterTypes = [
+    ...new Set(disasters.map((item) => item.disasterType)),
+  ];
 
-  const filteredDisasters = disasters.filter(
-    (disaster) =>
-      (filter === "all" || disaster.type.toLowerCase() === filter) &&
-      (!dateRange.from || new Date(disaster.timestamp) >= dateRange.from) &&
-      (!dateRange.to || new Date(disaster.timestamp) <= dateRange.to)
-  );
+  const filteredDisasters = useMemo(() => {
+    return disasters.filter(
+      (disaster) =>
+        (filter === "all" ||
+          disaster.disasterType.replace(" ", "").toLowerCase() === filter) &&
+        (!dateRange.from || new Date(disaster.timestamp) >= dateRange.from) &&
+        (!dateRange.to || new Date(disaster.timestamp) <= dateRange.to)
+    );
+  }, [filter, dateRange]);
   return (
     <Card>
       <CardHeader>
@@ -54,11 +70,14 @@ export function DisasterTable({ disasters }: { disasters: any }) {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Types</SelectItem>
-                <SelectItem value="earthquake">Earthquake</SelectItem>
-                <SelectItem value="hurricane">Hurricane</SelectItem>
-                <SelectItem value="flood">Flood</SelectItem>
-                <SelectItem value="wildfire">Wildfire</SelectItem>
-                <SelectItem value="tornado">Tornado</SelectItem>
+                {disasterTypes.map((type, idx) => (
+                  <SelectItem
+                    value={type.replace(" ", "").toLowerCase()}
+                    key={idx}
+                  >
+                    {type}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
@@ -89,7 +108,7 @@ export function DisasterTable({ disasters }: { disasters: any }) {
                 <Calendar
                   initialFocus
                   mode="range"
-                  defaultMonth={dateRange.from}
+                  defaultMonth={dateRange.from || new Date()}
                   selected={dateRange}
                   onSelect={setDateRange}
                   numberOfMonths={2}
@@ -104,33 +123,25 @@ export function DisasterTable({ disasters }: { disasters: any }) {
             <TableRow>
               <TableHead>Type</TableHead>
               <TableHead>Location</TableHead>
-              <TableHead>Severity</TableHead>
-              <TableHead>Affected People</TableHead>
               <TableHead>Timestamp</TableHead>
+              <TableHead>Source</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filteredDisasters.map((disaster) => (
-              <TableRow key={disaster.id}>
-                <TableCell>{disaster.type}</TableCell>
+            {filteredDisasters.map((disaster, idx) => (
+              <TableRow key={idx}>
+                <TableCell>{disaster.disasterType}</TableCell>
                 <TableCell>{disaster.location}</TableCell>
                 <TableCell>
-                  <Badge
-                    variant={
-                      disaster.severity === "High" ||
-                      disaster.severity === "Severe"
-                        ? "destructive"
-                        : "secondary"
-                    }
-                  >
-                    {disaster.severity}
-                  </Badge>
+                  {format(disaster.timestamp, "EEEE, d MMM yyyy")}
                 </TableCell>
                 <TableCell>
-                  {disaster.affectedPeople.toLocaleString()}
-                </TableCell>
-                <TableCell>
-                  {new Date(disaster.timestamp).toLocaleString()}
+                  <Link href={disaster.postLink} className="w-fit">
+                    <Badge variant={"secondary"}>
+                      Visit
+                      <ExternalLink className="size-3 ml-2" />
+                    </Badge>
+                  </Link>
                 </TableCell>
               </TableRow>
             ))}
