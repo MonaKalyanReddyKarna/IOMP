@@ -1,3 +1,4 @@
+"use client"
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 
@@ -5,9 +6,9 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibXJmbHluIiwiYSI6ImNsd3YzOWswMDBhc3YyaXNheGc3a
 const MainMap = () => {
     const mapContainer = useRef<any>(null);
     const map = useRef<any>(null);
-    const [lng, setLng] = useState(-70.9);
-    const [lat, setLat] = useState(42.35);
-    const [zoom, setZoom] = useState(9);
+    const [lng, _setLng] = useState(-70.9);
+    const [lat, _setLat] = useState(42.35);
+    const [zoom, _setZoom] = useState(9);
     useEffect(() => {
         if (map.current) return; // initialize map only once
         map.current = new mapboxgl.Map({
@@ -17,11 +18,11 @@ const MainMap = () => {
             zoom: zoom
         });
     });
-  return (
-      <div>
-          <div ref={mapContainer} className="map-container w-full h-full"/>
-      </div>
-  )
+    return (
+        <div>
+            <div ref={mapContainer} className="map-container w-full h-full" />
+        </div>
+    )
 }
 
 export default MainMap;

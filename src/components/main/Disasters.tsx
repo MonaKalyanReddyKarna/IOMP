@@ -1,6 +1,6 @@
 import { Disaster } from '@/types/disaster';
 import React from 'react';
-import FilterSection from './FilterSection';
+import FilterSection from './Header';
 import DisasterCard from './DisasterCard';
 
 interface DisastersProps {
