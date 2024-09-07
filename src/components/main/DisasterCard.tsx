@@ -34,7 +34,7 @@ export function DisasterCard({ disasterData }: DisasterProps) {
         <div onClick={handleSectionChange} className='w-full py-8 border-b border-b-gray-300 flex flex-col p-4  gap-2 cursor-pointer hover:bg-gray-200'>
             {/* Row 1 */}
             <div className='flex items-end gap-4'>
-                <img className='w-12 h-12' src={getDisasterIcon(disasterData.disasterType.toLowerCase())} alt="Icon" />
+                <img className='w-12 h-12' src={getDisasterIcon(disasterData?.disasterType?.toLowerCase())} alt="Icon" />
                 <p className='text-[#276fb3] font-[900] underline underline-2 text-2xl'>
                     {disasterData.title}
                 </p>
