@@ -1,16 +1,15 @@
-"use client"
-import React, { useState } from 'react';
+"use client";
+import React from 'react';
 import Disasters from './Disasters';
 import { useDisasterStore } from '@/zustand/useDisasterStore';
+import DisasterInfo from './DisasterInfo';
 
 const Hero = () => {
     const { disasters } = useDisasterStore();
-    const [section, setSection] = useState<'disasters' | 'disasterinfo'>('disasters');
 
     return (
         <div className='p-2 h-full overflow-y-auto'>
             <Disasters disasters={disasters} />
-            {/* <DisasterInfo /> */}
         </div>
     );
 };
