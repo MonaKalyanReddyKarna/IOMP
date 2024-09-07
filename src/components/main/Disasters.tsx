@@ -13,7 +13,7 @@ export function Disasters({ disasters }: DisastersProps) {
     const section = useDisasterStore((state) => state.section);
 
     return (
-        <div className='flex flex-col items-center space-y-4 p-4'>
+        <div className='flex flex-col items-center p-4 w-full h-full'>
             <FilterSection />
             {section === "disasters" ? (
                 disasters.map((disaster) => (

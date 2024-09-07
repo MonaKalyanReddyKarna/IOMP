@@ -31,11 +31,11 @@ export function DisasterCard({ disasterData }: DisasterProps) {
     };
 
     return (
-        <div onClick={handleSectionChange} className='w-full h-32 border-b border-b-gray-300 flex flex-col p-4 gap-2'>
+        <div onClick={handleSectionChange} className='w-full py-8 border-b border-b-gray-300 flex flex-col p-4  gap-2 cursor-pointer hover:bg-gray-200'>
             {/* Row 1 */}
             <div className='flex items-end gap-4'>
                 <img className='w-12 h-12' src={getDisasterIcon(disasterData.disasterType.toLowerCase())} alt="Icon" />
-                <p className='text-[#055372] font-[900] underline underline-2 text-2xl'>
+                <p className='text-[#276fb3] font-[900] underline underline-2 text-2xl'>
                     {disasterData.title}
                 </p>
             </div>
@@ -49,12 +49,12 @@ export function DisasterCard({ disasterData }: DisasterProps) {
                 <Separator />
                 <div className='flex flex-row items-center gap-2'>
                     <h2 className='font-bold'>Disaster Type: </h2>
-                    <span className='text-[#055372] font-[900] underline underline-2'>{disasterData.disasterType}</span>
+                    <span className='text-[#276fb3] font-[900] underline underline-2'>{disasterData.disasterType}</span>
                 </div>
                 <Separator />
                 <div className='flex flex-row items-center gap-2'>
                     <h2 className='font-bold'>Affected Area: </h2>
-                    <span className='text-[#055372] font-[900] underline underline-2'>{disasterData.location}</span>
+                    <span className='text-[#276fb3] font-[900] underline underline-2'>{disasterData.location}</span>
                 </div>
             </div>
         </div>
