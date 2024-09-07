@@ -1,9 +1,11 @@
 "use client"
-import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl, { LngLat } from 'mapbox-gl';
-import { disasterPoints, stateColors } from "@/data/mapboxdummy";
+import React, {useRef, useEffect, useState} from 'react';
+import mapboxgl, {LngLat} from 'mapbox-gl';
+import {disasterPoints, stateColors} from "@/data/mapboxdummy";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './map.css';
+import {data} from "@/data/dummy";
+
 mapboxgl.accessToken = 'pk.eyJ1IjoibXJmbHluIiwiYSI6ImNsd3YzOWswMDBhc3YyaXNheGc3aTRtdTcifQ.vqe0vVgE90a8B2CH9lYjUg';
 
 class RecenterControl {
@@ -53,6 +55,19 @@ class RecenterControl {
     }
 }
 
+const API_KEY = '5e07895c5c1f48e9803d869c5ad29a4c';
+
+async function getCoordinates(location) {
+    const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(location)}&key=${API_KEY}`);
+    const data = await response.json();
+    if (data.results && data.results.length > 0) {
+        const {lat, lng} = data.results[0].geometry;
+        return {lat, lng};
+    } else {
+        throw new Error('No results found');
+    }
+}
+
 const MainMap = () => {
     const mapContainer = useRef<any>(null);
     const map = useRef<any>(null);
@@ -60,6 +75,19 @@ const MainMap = () => {
     const [lat, _setLat] = useState(20.5937);
     const [zoom, _setZoom] = useState(4);
     useEffect(() => {
+        // (async () => {
+        //     let modifiedData = [];
+        //     for (const item of data) {
+        //         try {
+        //             const coords = await getCoordinates(item.location);
+        //             console.log(`${item.title}:`, coords);
+        //             modifiedData.push({...item, coordinates: coords})
+        //         } catch (error) {
+        //             console.error(`Error fetching coordinates for ${item.location}:`, error);
+        //         }
+        //     }
+        //     console.log(modifiedData);
+        // })();
         if (map.current) return; // initialize map only once
         map.current = new mapboxgl.Map({
             container: mapContainer.current,
@@ -110,17 +138,17 @@ const MainMap = () => {
             });
 
             // Add disaster points source
-            disasterPoints.features.forEach(point => {
+            data.forEach(point => {
                 // Create a marker
                 const marker = new mapboxgl.Marker()
-                    .setLngLat(new LngLat(point.geometry.coordinates[0], point.geometry.coordinates[1]))
-                    .setPopup(new mapboxgl.Popup({ offset: 25 }).setText(point.properties.disaster))
+                    .setLngLat(new LngLat(point.coordinates.lng, point.coordinates.lat))
+                    .setPopup(new mapboxgl.Popup({offset: 25}).setText(point.title))
                     .addTo(map.current);
             });
         });
     });
     return (
-        <div ref={mapContainer} className="map-container w-full h-full" />
+        <div ref={mapContainer} className="map-container w-full h-full"/>
     )
 }
 
