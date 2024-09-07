@@ -14,6 +14,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibXJmbHluIiwiYSI6ImNsd3YzOWswMDBhc3YyaXNheGc3a
 const MainMap = () => {
     const disaster = useDisasterStore((state) => state.selectedDisaster);
     const section = useDisasterStore((state) => state.section);
+    const setSection = useDisasterStore((state) => state.setSection);
+    const setSelectedDisaster = useDisasterStore((state) => state.setSelectedDisaster);
     const mapContainer = useRef<any>(null);
     const currentPopUp = useRef<any>(null);
     const map = useRef<any>(null);
@@ -122,7 +124,9 @@ const MainMap = () => {
                     type: 'FeatureCollection',
                     features: data.map(point => ({
                         type: 'Feature',
+                        data: 'help',
                         properties: {
+                            data: point,
                             description: `
                                 <div class="popup-content">
                                     <h3>${point.title}</h3>
@@ -160,7 +164,13 @@ const MainMap = () => {
                 });
 
                 // Event listener for showing popup on hover
+                map.current.on('click', 'places', (e)=>{
+                   // console.log(e.features);
+                   setSelectedDisaster(JSON.parse(e.features[0].properties.data));
+                   setSection('disasterinfo');
+                });
                 map.current.on('mouseenter', 'places', (e) => {
+
                     // Change the cursor style as a UI indicator.
                     map.current.getCanvas().style.cursor = 'pointer';
 
@@ -174,6 +184,8 @@ const MainMap = () => {
                     while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
                         coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
                     }
+
+
 
                     // Populate the popup and set its coordinates
                     // based on the feature found.
@@ -210,6 +222,9 @@ const MainMap = () => {
             return;
 
         }
+        console.log("TEST",disaster);
+        if(!disaster.coordinates)return;
+        if(!disaster.coordinates.lng || !disaster.coordinates.lat)return;
         (map.current as Map).flyTo({
             center: [disaster.coordinates.lng, disaster.coordinates.lat],
             zoom: 7,
