@@ -30,12 +30,13 @@ const DisasterInfo = () => {
                     <p className='text-gray-600 mt-2'>{"Ongoing" || 'Status not available'}</p>
                 </div>
                 <div>
-                    <button
+                    <a
+                        href={`/disaster/${disaster._id}`}
                         className='px-6 py-3 flex gap-2 items-center bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-200'
                     >
                         <FileText />
                         View Detailed Report
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
