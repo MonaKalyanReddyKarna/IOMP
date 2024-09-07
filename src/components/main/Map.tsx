@@ -15,11 +15,11 @@ const MainMap = () => {
     const disaster = useDisasterStore((state) => state.selectedDisaster);
     const section = useDisasterStore((state) => state.section);
     const mapContainer = useRef<any>(null);
+    const currentPopUp = useRef<any>(null);
     const map = useRef<any>(null);
     const [lng, _setLng] = useState(78.9629);
     const [lat, _setLat] = useState(20.5937);
     const [zoom, _setZoom] = useState(4);
-
 
 
     useEffect(() => {
@@ -51,7 +51,9 @@ const MainMap = () => {
             minZoom: 4
         });
 
-        map.current.addControl(new mapboxgl.NavigationControl());
+        map.current.addControl(new mapboxgl.NavigationControl({
+            showCompass: false
+        }));
         map.current.addControl(new RecenterControl({
             center: [78.9629, 20.5937], // Default center [lng, lat]
             zoom: 4 // Default zoom level
@@ -66,11 +68,11 @@ const MainMap = () => {
 
             // Ensure map bearing remains fixed
             map.current.on('rotate', () => {
-                map.current.rotateTo(0, { duration: 0 }); // Reset to 0 degrees
+                map.current.rotateTo(0, {duration: 0}); // Reset to 0 degrees
             });
 
             // Optional: Lock bearing on load
-            map.current.rotateTo(0, { duration: 0 });
+            map.current.rotateTo(0, {duration: 0});
             // Add state boundaries source
             map.current.addSource('state-boundaries', {
                 'type': 'geojson',
@@ -114,27 +116,99 @@ const MainMap = () => {
                 }
             });
 
-            // Add disaster points source
-            data.forEach(point => {
-                // Create a marker
-                const marker = new mapboxgl.Marker()
-                    .setLngLat(new LngLat(point.coordinates.lng, point.coordinates.lat))
-                    .setPopup(new mapboxgl.Popup({offset: 25}).setText(point.title))
-                    .addTo(map.current);
+            map.current.addSource('disasters', {
+                type: 'geojson',
+                data: {
+                    type: 'FeatureCollection',
+                    features: data.map(point => ({
+                        type: 'Feature',
+                        properties: {
+                            description: `
+                                <div class="popup-content">
+                                    <h3>${point.title}</h3>
+                                    <p><strong>Time:</strong> ${new Date(point.timestamp).toLocaleDateString()}</p>
+                                    <p><strong>Type:</strong> ${point.disasterType.replace('_', ' ')}</p>
+                                    <p><strong>Status:</strong> Ongoing</p>
+                                </div>
+                            `,
+                        },
+                        geometry: {
+                            type: 'Point',
+                            coordinates: [point.coordinates.lng, point.coordinates.lat]
+                        }
+                    }))
+                }
+            });
+            map.current.loadImage('https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png', (error, image) => {
+                if (error) throw error;
+                map.current.addImage('custom-icon', image);
+
+                map.current.addLayer({
+                    id: 'places',
+                    type: 'symbol',
+                    source: 'disasters',
+                    layout: {
+                        'icon-image': 'custom-icon',
+                        'icon-size': 0.5,
+                        'icon-allow-overlap': true,
+                        'icon-ignore-placement': true
+                    }
+                });
+                const popup = new mapboxgl.Popup({
+                    closeButton: false,
+                    closeOnClick: false
+                });
+
+                // Event listener for showing popup on hover
+                map.current.on('mouseenter', 'places', (e) => {
+                    // Change the cursor style as a UI indicator.
+                    map.current.getCanvas().style.cursor = 'pointer';
+
+                    // Copy coordinates array.
+                    const coordinates = e.features[0].geometry.coordinates.slice();
+                    const description = e.features[0].properties.description;
+
+                    // Ensure that if the map is zoomed out such that multiple
+                    // copies of the feature are visible, the popup appears
+                    // over the copy being pointed to.
+                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                    }
+
+                    // Populate the popup and set its coordinates
+                    // based on the feature found.
+                    popup.setLngLat(coordinates).setHTML(description).addTo(map.current);
+                });
+
+                // Event listener for hiding popup on hover out
+                map.current.on('mouseleave', 'places', () => {
+                    map.current.getCanvas().style.cursor = '';
+                    popup.remove();
+                });
+
             });
         });
     });
 
+
+
     useEffect(() => {
         if (!map.current) return;
-        if(section === 'disasters') {
+        const popup = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: false
+        });
+        if (section === 'disasters') {
             (map.current as Map).flyTo({
-                center: [78.9629, 20.5937] ,
+                center: [78.9629, 20.5937],
                 zoom: 4,
                 essential: true,
                 speed: 3
             });
+            if(currentPopUp.current)
+            currentPopUp.current.remove();
             return;
+
         }
         (map.current as Map).flyTo({
             center: [disaster.coordinates.lng, disaster.coordinates.lat],
@@ -142,6 +216,21 @@ const MainMap = () => {
             essential: true,
             speed: 2
         });
+
+        // Copy coordinates array.
+        const description = `<div class="popup-content">
+                                    <h3>${disaster.title}</h3>
+                                    <p><strong>Time:</strong> ${new Date(disaster.timestamp).toLocaleDateString()}</p>
+                                    <p><strong>Type:</strong> ${disaster.disasterType.replace('_', ' ')}</p>
+                                    <p><strong>Status:</strong> Ongoing</p>
+                                </div>
+                            `;
+
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        popup.setLngLat([disaster.coordinates.lng, disaster.coordinates.lat]).setHTML(description).addTo(map.current);
+        currentPopUp.current = popup;
     }, [disaster, section]);
     return (
         <div ref={mapContainer} className="map-container w-full h-full"/>
