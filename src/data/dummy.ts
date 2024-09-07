@@ -1,4 +1,4 @@
-export const DUMMY = [
+export const data = [
   {
     description:
       "Severe flooding reported in downtown Mumbai after heavy rainfall. Many areas are submerged, and rescue operations are underway.",

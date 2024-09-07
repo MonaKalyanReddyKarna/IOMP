@@ -1,11 +1,9 @@
 // import { Charts } from "@/components/Charts";
 // import { DisasterTable } from "@/components/DisasterTable";
-import { DUMMY } from "@/data/dummy";
+import Main from "./pages/Main";
 
 export default function Dashboard() {
-  const initialDisasterData = DUMMY;
-
   return (
-    <div></div>
+    <Main />
   );
 }
