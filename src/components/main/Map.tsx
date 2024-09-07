@@ -143,7 +143,7 @@ const MainMap = () => {
                     }))
                 }
             });
-            map.current.loadImage('https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png', (error, image) => {
+            map.current.loadImage('location.png', (error, image) => {
                 if (error) throw error;
                 map.current.addImage('custom-icon', image);
 
