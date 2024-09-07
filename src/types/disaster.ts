@@ -9,4 +9,8 @@ export type Disaster = {
     clusterIdentifier: string;
     timestamp: string;
     location: string;
+    coordinates: {
+        lat: number,
+        lng: number
+    }
 };

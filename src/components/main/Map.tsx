@@ -1,79 +1,27 @@
 "use client"
 import React, {useRef, useEffect, useState} from 'react';
-import mapboxgl, {LngLat} from 'mapbox-gl';
+import mapboxgl, {LngLat, Map} from 'mapbox-gl';
 import {disasterPoints, stateColors} from "@/data/mapboxdummy";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './map.css';
 import {data} from "@/data/dummy";
+import {useDisasterStore} from "@/zustand/useDisasterStore";
+import {RecenterControl} from "@/lib/MapboxControls";
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibXJmbHluIiwiYSI6ImNsd3YzOWswMDBhc3YyaXNheGc3aTRtdTcifQ.vqe0vVgE90a8B2CH9lYjUg';
 
-class RecenterControl {
-    private _center: number[];
-    private _zoom: number;
-    private _map: any;
-
-    constructor(options = {
-        center: [78.9629, 20.5937],
-        zoom: 4
-    }) {
-        this._center = options.center || [78.9629, 20.5937];
-        this._zoom = options.zoom || 4;
-    }
-
-    onAdd(map: any) {
-        this._map = map;
-
-        // Create the container for the control
-        const container = document.createElement('div');
-        container.className = 'mapboxgl-ctrl mapboxgl-ctrl-group';
-
-        // Create the button
-        const button = document.createElement('button');
-        button.className = 'mapboxgl-ctrl-button';
-        button.textContent = 'Recenter';
-        button.innerHTML = '<i style="color: black; display: flex; justify-content: center; align-items: center;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-locate-fixed"><line x1="2" x2="5" y1="12" y2="12"/><line x1="19" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="5"/><line x1="12" x2="12" y1="19" y2="22"/><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3"/></svg></i>';
-
-        // Add click event to the button
-        button.addEventListener('click', () => {
-            this._map.flyTo({
-                center: this._center,
-                zoom: this._zoom,
-                essential: true,
-                speed: 3
-            });
-        });
-
-        // Append the button to the container
-        container.appendChild(button);
-
-        return container;
-    }
-
-    onRemove() {
-        this._map = null;
-    }
-}
-
-const API_KEY = '5e07895c5c1f48e9803d869c5ad29a4c';
-
-async function getCoordinates(location) {
-    const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(location)}&key=${API_KEY}`);
-    const data = await response.json();
-    if (data.results && data.results.length > 0) {
-        const {lat, lng} = data.results[0].geometry;
-        return {lat, lng};
-    } else {
-        throw new Error('No results found');
-    }
-}
 
 const MainMap = () => {
+    const disaster = useDisasterStore((state) => state.selectedDisaster);
+    const section = useDisasterStore((state) => state.section);
     const mapContainer = useRef<any>(null);
     const map = useRef<any>(null);
     const [lng, _setLng] = useState(78.9629);
     const [lat, _setLat] = useState(20.5937);
     const [zoom, _setZoom] = useState(4);
+
+
+
     useEffect(() => {
         // (async () => {
         //     let modifiedData = [];
@@ -89,26 +37,55 @@ const MainMap = () => {
         //     console.log(modifiedData);
         // })();
         if (map.current) return; // initialize map only once
+        const bounds = [
+            [50, -10],   // Southwest coordinates [lng, lat] - extended far south and west
+            [110, 40]    // Northeast coordinates [lng, lat] - extended far north and east
+        ];
         map.current = new mapboxgl.Map({
             container: mapContainer.current,
             style: 'mapbox://styles/mapbox/light-v11',
             center: [lng, lat],
             projection: 'mercator', // 'mercator' or 'geographic1
             zoom: zoom,
+            maxBounds: bounds,
             minZoom: 4
         });
+
         map.current.addControl(new mapboxgl.NavigationControl());
         map.current.addControl(new RecenterControl({
             center: [78.9629, 20.5937], // Default center [lng, lat]
             zoom: 4 // Default zoom level
         }));
         map.current.on('load', () => {
+
+
+            // Fit the map to the bounding box
+
+            map.current.dragRotate.disable();
+            map.current.touchZoomRotate.disableRotation();
+
+            // Ensure map bearing remains fixed
+            map.current.on('rotate', () => {
+                map.current.rotateTo(0, { duration: 0 }); // Reset to 0 degrees
+            });
+
+            // Optional: Lock bearing on load
+            map.current.rotateTo(0, { duration: 0 });
             // Add state boundaries source
             map.current.addSource('state-boundaries', {
                 'type': 'geojson',
                 'data': 'india_states1.json' // Replace with the path to your GeoJSON file
             });
+            const layerId = 'state-label';
 
+            // Check if the layer exists
+            if (map.current.getLayer(layerId)) {
+                // Update the layer's paint properties to change the label style
+                map.current.setPaintProperty(layerId, 'text-color', 'black'); // Change text color to red
+                map.current.setPaintProperty(layerId, 'text-opacity', 1); // Change text color to red
+            } else {
+                console.error(`Layer ${layerId} not found`);
+            }
             // Add state boundaries layer
             map.current.addLayer({
                 'id': 'state-fill',
@@ -121,7 +98,7 @@ const MainMap = () => {
                         ...Object.entries(stateColors).flat(), // Flatten the stateColors object into an array of [stateName, color]
                         '#ffffff' // Default color if the state name does not match
                     ],
-                    'fill-opacity': 0.5 // Faded effect
+                    'fill-opacity': 0.3 // Faded effect
                 }
             });
 
@@ -147,6 +124,25 @@ const MainMap = () => {
             });
         });
     });
+
+    useEffect(() => {
+        if (!map.current) return;
+        if(section === 'disasters') {
+            (map.current as Map).flyTo({
+                center: [78.9629, 20.5937] ,
+                zoom: 4,
+                essential: true,
+                speed: 3
+            });
+            return;
+        }
+        (map.current as Map).flyTo({
+            center: [disaster.coordinates.lng, disaster.coordinates.lat],
+            zoom: 7,
+            essential: true,
+            speed: 2
+        });
+    }, [disaster, section]);
     return (
         <div ref={mapContainer} className="map-container w-full h-full"/>
     )
