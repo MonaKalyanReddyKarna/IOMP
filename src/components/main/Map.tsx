@@ -1,15 +1,15 @@
 "use client"
 import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl from 'mapbox-gl';
+import mapboxgl, {LngLat} from 'mapbox-gl';
 import {disasterPoints, stateColors} from "@/data/mapboxdummy";
-
+import 'mapbox-gl/dist/mapbox-gl.css';
 mapboxgl.accessToken = 'pk.eyJ1IjoibXJmbHluIiwiYSI6ImNsd3YzOWswMDBhc3YyaXNheGc3aTRtdTcifQ.vqe0vVgE90a8B2CH9lYjUg';
 const MainMap = () => {
     const mapContainer = useRef<any>(null);
     const map = useRef<any>(null);
     const [lng, _setLng] = useState(78.9629);
     const [lat, _setLat] = useState(20.5937);
-    const [zoom, _setZoom] = useState(4.2);
+    const [zoom, _setZoom] = useState(4);
     useEffect(() => {
         if (map.current) return; // initialize map only once
         map.current = new mapboxgl.Map({
@@ -17,13 +17,14 @@ const MainMap = () => {
             style: 'mapbox://styles/mapbox/light-v11',
             center: [lng,lat],
             projection: 'mercator', // 'mercator' or 'geographic1
-            zoom: zoom
+            zoom: zoom,
+            minZoom: 4
         });
         map.current.on('load', () => {
             // Add state boundaries source
             map.current.addSource('state-boundaries', {
                 'type': 'geojson',
-                'data': 'india_state_geo.json' // Replace with the path to your GeoJSON file
+                'data': 'india_states1.json' // Replace with the path to your GeoJSON file
             });
 
             // Add state boundaries layer
@@ -55,27 +56,12 @@ const MainMap = () => {
             });
 
             // Add disaster points source
-            map.current.addSource('disaster-points', {
-                'type': 'geojson',
-                'data': disasterPoints
-            });
-
-            // Add disaster points layer
-            map.current.addLayer({
-                'id': 'disaster-points-layer',
-                'type': 'symbol',
-                'source': 'disaster-points',
-                'layout': {
-                    'icon-image': 'marker', // Icon used for points
-                    'text-field': '{disaster}', // Display disaster type as label
-                    'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-                    'text-size': 12,
-                    'text-offset': [0, 1.5],
-                    'text-anchor': 'top'
-                },
-                'paint': {
-                    'text-color': '#FF0000' // Color of the text
-                }
+            disasterPoints.features.forEach(point => {
+                // Create a marker
+                const marker = new mapboxgl.Marker()
+                    .setLngLat(new LngLat(point.geometry.coordinates[0], point.geometry.coordinates[1]))
+                    .setPopup(new mapboxgl.Popup({ offset: 25 }).setText(point.properties.disaster))
+                    .addTo(map.current);
             });
         });
     });
