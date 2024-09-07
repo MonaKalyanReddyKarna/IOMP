@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="bg-base-200 text-base-content rounded p-10">
+    <footer className="bg-base-200 text-base-content rounded p-10 bg-gray-50">
       <div className="flex flex-col items-center">
         <nav className="flex justify-center space-x-6 mb-6 w-full max-w-3xl">
           <a className="link link-hover text-lg font-semibold">About Us</a>
