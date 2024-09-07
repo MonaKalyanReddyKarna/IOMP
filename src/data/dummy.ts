@@ -1,5 +1,17 @@
 export const data = [
     {
+        _id: "25",
+        title: "2023 Odisha Train Accident",
+        description: "A tragic train accident in Odisha resulted in hundreds of deaths, making it one of the worst rail disasters in India.",
+        disasterType: "Train_Accident",
+        imageURLS: ["https://via.placeholder.com/800x600.png?text=Odisha+Train+Accident+1"],
+        postAuthorURL: "https://twitter.com/NYTimes",
+        postLink: "https://twitter.com/NYTimes/status/1701212393821719600",
+        clusterIdentifier: "odisha_train_accident_2023",
+        timestamp: "2023-06-02T00:00:00Z",
+        location: "Odisha",
+    },
+    {
         _id: "1",
         title: "2004 Indian Ocean Tsunami",
         description: "A massive tsunami struck the eastern coast of India, causing widespread destruction and thousands of casualties.",
@@ -250,17 +262,5 @@ export const data = [
         clusterIdentifier: "hyderabad_floods_2020",
         timestamp: "2020-10-13T00:00:00Z",
         location: "Hyderabad",
-    },
-    {
-        _id: "25",
-        title: "2023 Odisha Train Accident",
-        description: "A tragic train accident in Odisha resulted in hundreds of deaths, making it one of the worst rail disasters in India.",
-        disasterType: "Train Accident",
-        imageURLS: ["https://via.placeholder.com/800x600.png?text=Odisha+Train+Accident+1"],
-        postAuthorURL: "https://twitter.com/NYTimes",
-        postLink: "https://twitter.com/NYTimes/status/1701212393821719600",
-        clusterIdentifier: "odisha_train_accident_2023",
-        timestamp: "2023-06-02T00:00:00Z",
-        location: "Odisha",
     },
 ];
