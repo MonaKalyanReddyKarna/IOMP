@@ -6,7 +6,7 @@ export function Footer() {
           <a className="link link-hover text-lg font-semibold">About Us</a>
           <a className="link link-hover text-lg font-semibold">Contact</a>
           <a className="link link-hover text-lg font-semibold">Jobs</a>
-          <a className="link link-hover text-lg font-semibold">Press Kit</a>
+          <a className="link link-hover text-lg font-semibold">Configurations</a>
         </nav>
         <div className="flex justify-center space-x-6 mb-6">
           <a href="#" aria-label="Twitter" className="text-blue-500 hover:text-blue-600 transition-colors duration-200">

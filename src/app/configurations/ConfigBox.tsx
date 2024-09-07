@@ -33,6 +33,10 @@ const ConfigBox = ({ configuration }: ConfigBoxProps) => {
                 <p className='text-sm text-gray-500 py-2'>{configuration.description}</p>
             </div>
 
+            <div>
+                <input type="range" min={1} max={20}></input>
+            </div>
+
             {/* Bottom: Status and Speed */}
             <div className=' flex justify-between items-center'>
                 <div className='flex items-center gap-2'>
