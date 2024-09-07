@@ -1,7 +1,7 @@
 "use client"
 import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl, {LngLat} from 'mapbox-gl';
-import {disasterPoints, stateColors} from "@/data/mapboxdummy";
+import mapboxgl, { LngLat } from 'mapbox-gl';
+import { disasterPoints, stateColors } from "@/data/mapboxdummy";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './map.css';
 mapboxgl.accessToken = 'pk.eyJ1IjoibXJmbHluIiwiYSI6ImNsd3YzOWswMDBhc3YyaXNheGc3aTRtdTcifQ.vqe0vVgE90a8B2CH9lYjUg';
@@ -64,7 +64,7 @@ const MainMap = () => {
         map.current = new mapboxgl.Map({
             container: mapContainer.current,
             style: 'mapbox://styles/mapbox/light-v11',
-            center: [lng,lat],
+            center: [lng, lat],
             projection: 'mercator', // 'mercator' or 'geographic1
             zoom: zoom,
             minZoom: 4
@@ -120,7 +120,7 @@ const MainMap = () => {
         });
     });
     return (
-            <div ref={mapContainer} className="map-container w-full h-full" />
+        <div ref={mapContainer} className="map-container w-full h-full" />
     )
 }
 
