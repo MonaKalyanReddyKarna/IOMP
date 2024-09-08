@@ -1,6 +1,7 @@
 import Hero from '@/components/main/Hero'
 import Map from '@/components/main/Map'
 import React from 'react'
+import {Footer} from "@/components/Footer";
 
 const Main = () => {
     return (

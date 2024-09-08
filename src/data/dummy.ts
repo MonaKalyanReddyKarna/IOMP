@@ -120,7 +120,7 @@ export const data = [
     },
     {
         _id: "8",
-        title: "2023 Odisha Train Accident",
+        title: "2024 Odisha Train Accident",
         description:
             "The 2023 Odisha train accident was a tragic event that shocked the nation, involving the collision of three trains. The incident resulted in the deaths of hundreds of passengers and left many more injured, marking one of the deadliest rail disasters in India. Rescue operations were massive, with teams working tirelessly to find survivors among the wreckage. The scale of the accident also led to significant infrastructure damage and raised concerns about railway safety in the country. Investigations pointed to a signal fault as a potential cause, sparking discussions on the urgent need for railway modernization.",
         disasterType: "Train_Accident",
@@ -137,7 +137,7 @@ export const data = [
     },
     {
         _id: "9",
-        title: "2023 Sikkim Glacier Burst",
+        title: "2024 Sikkim Glacier Burst",
         description:
             "A glacier burst in the Teesta River basin of Sikkim caused widespread flooding in nearby towns and villages. The floodwaters caused massive damage to infrastructure, including roads and bridges, and led to the evacuation of many residents. The event once again raised concerns about the environmental impact of climate change on fragile Himalayan ecosystems.",
         disasterType: "Glacier_Burst",
@@ -154,9 +154,9 @@ export const data = [
     },
     {
         _id: "10",
-        title: "2004 Indian Ocean Tsunami",
+        title: "2024 Indian Ocean Tsunami",
         description:
-            "The 2004 Indian Ocean Tsunami was one of the most catastrophic natural disasters in modern history. Triggered by a powerful undersea earthquake, the resulting tsunami devastated the coastlines of India, Indonesia, Sri Lanka, and Thailand. Entire towns and villages were swept away, leaving behind a trail of destruction and claiming thousands of lives. The tragedy united the global community in relief efforts, but the scale of the damage took years to recover from.",
+            "The 2024 Indian Ocean Tsunami was one of the most catastrophic natural disasters in modern history. Triggered by a powerful undersea earthquake, the resulting tsunami devastated the coastlines of India, Indonesia, Sri Lanka, and Thailand. Entire towns and villages were swept away, leaving behind a trail of destruction and claiming thousands of lives. The tragedy united the global community in relief efforts, but the scale of the damage took years to recover from.",
         disasterType: "Tsunami",
         imageURLS: ["https://via.placeholder.com/800x600.png?text=Indian+Ocean+Tsunami+1"],
         postAuthorURL: "https://twitter.com/BBCWorld",
@@ -170,78 +170,10 @@ export const data = [
         },
     },
     {
-        _id: "11",
-        title: "2013 Uttarakhand Floods",
-        description:
-            "In 2013, Uttarakhand faced one of the worst flood disasters due to extremely heavy rainfall and subsequent landslides. Entire villages were buried under mud, rocks, and debris, while rivers overflowed and destroyed bridges, homes, and roads. The flooding claimed thousands of lives, and many areas were left inaccessible for days, hampering rescue operations. This natural disaster highlighted the growing vulnerability of Himalayan regions to extreme weather events, possibly fueled by climate change.",
-        disasterType: "Flood",
-        imageURLS: ["https://via.placeholder.com/800x600.png?text=Uttarakhand+Flood+1"],
-        postAuthorURL: "https://twitter.com/CNN",
-        postLink: "https://twitter.com/CNN/status/1701212393821717200",
-        clusterIdentifier: "uttarakhand_floods_2013",
-        timestamp: "2013-06-14T00:00:00Z",
-        location: "Uttarakhand",
-        coordinates: {
-            lat: 30.0417376,
-            lng: 79.089691,
-        },
-    },
-    {
-        _id: "12",
-        title: "1999 Odisha Super Cyclone",
-        description:
-            "The 1999 Odisha Super Cyclone was one of the most severe tropical cyclones ever recorded in India. It struck with full force, bringing with it unprecedented winds and heavy rainfall. The cyclone led to widespread devastation, particularly in coastal areas, where entire towns were submerged, and crops were wiped out. Over 10,000 people lost their lives, and millions were displaced. The disaster prompted the Indian government to strengthen its cyclone preparedness and response measures.",
-        disasterType: "Cyclone",
-        imageURLS: ["https://via.placeholder.com/800x600.png?text=Odisha+Cyclone+1"],
-        postAuthorURL: "https://twitter.com/ABCNews",
-        postLink: "https://twitter.com/ABCNews/status/1701212393821717300",
-        clusterIdentifier: "odisha_cyclone_1999",
-        timestamp: "1999-10-29T18:00:00Z",
-        location: "Odisha",
-        coordinates: {
-            lat: 20.5431241,
-            lng: 84.6897321,
-        },
-    },
-    {
-        _id: "13",
-        title: "2001 Gujarat Earthquake",
-        description:
-            "On January 26, 2001, Gujarat was struck by a massive earthquake that left widespread destruction in its wake. The earthquake, with a magnitude of 7.7, caused buildings to collapse and entire villages to be flattened. Thousands lost their lives, and the survivors faced a grim reality of ruined homes and infrastructure. The quake also raised questions about India's building codes and disaster preparedness in high-risk zones, pushing for improvements in urban planning and emergency response systems.",
-        disasterType: "Earthquake",
-        imageURLS: ["https://via.placeholder.com/800x600.png?text=Gujarat+Earthquake+1"],
-        postAuthorURL: "https://twitter.com/NatGeo",
-        postLink: "https://twitter.com/NatGeo/status/1701212393821717400",
-        clusterIdentifier: "gujarat_earthquake_2001",
-        timestamp: "2001-01-26T08:46:00Z",
-        location: "Gujarat",
-        coordinates: {
-            lat: 22.3850051,
-            lng: 71.745261,
-        },
-    },
-    {
-        _id: "14",
-        title: "2018 Kerala Floods",
-        description:
-            "In 2018, Kerala experienced unprecedented monsoon rains, leading to severe flooding that impacted millions. The torrential downpour triggered landslides, caused rivers to overflow, and left vast areas of the state submerged under water. Thousands were displaced from their homes, and the floods took a heavy toll on the local economy, particularly agriculture and infrastructure. The disaster also raised concerns about the management of dams and reservoirs, as their excess water release was a major factor in worsening the situation.",
-        disasterType: "Flood",
-        imageURLS: ["https://via.placeholder.com/800x600.png?text=Kerala+Flood+1"],
-        postAuthorURL: "https://twitter.com/UN",
-        postLink: "https://twitter.com/UN/status/1701212393821717500",
-        clusterIdentifier: "kerala_floods_2018",
-        timestamp: "2018-08-08T00:00:00Z",
-        location: "Kerala",
-        coordinates: {
-            lat: 10.3528744,
-            lng: 76.5120396,
-        },
-    },
-    {
         _id: "15",
-        title: "2019 Cyclone Fani Strikes Odisha",
+        title: "2024 Cyclone Fani Strikes Odisha",
         description:
-            "Cyclone Fani, one of the strongest tropical cyclones to hit the Indian subcontinent, made landfall in Odisha in May 2019. The cyclone brought with it high-speed winds, torrential rains, and a significant storm surge, leading to widespread devastation. Thousands of homes were destroyed, power lines were downed, and millions were affected. While the government had prepared for the event by evacuating millions, the economic damage was still immense, and the recovery process took several months.",
+            "Cyclone Fani, one of the strongest tropical cyclones to hit the Indian subcontinent, made landfall in Odisha in May 2024. The cyclone brought with it high-speed winds, torrential rains, and a significant storm surge, leading to widespread devastation. Thousands of homes were destroyed, power lines were downed, and millions were affected. While the government had prepared for the event by evacuating millions, the economic damage was still immense, and the recovery process took several months.",
         disasterType: "Cyclone",
         imageURLS: ["https://via.placeholder.com/800x600.png?text=Cyclone+Fani+1"],
         postAuthorURL: "https://twitter.com/Reuters",
@@ -256,9 +188,9 @@ export const data = [
     },
     {
         _id: "16",
-        title: "1984 Bhopal Gas Tragedy",
+        title: "2024 Bhopal Gas Tragedy",
         description:
-            "The Bhopal Gas Tragedy, one of the world's worst industrial disasters, occurred on the night of December 3, 1984, when a toxic gas leak from the Union Carbide plant spread over the city of Bhopal. Thousands died immediately, and many more suffered from the long-term effects of the exposure, such as respiratory issues, blindness, and birth defects. The disaster highlighted the need for stringent industrial safety regulations and legal accountability for multinational corporations.",
+            "The Bhopal Gas Tragedy, one of the world's worst industrial disasters, occurred on the night of December 3, 2024, when a toxic gas leak from the Union Carbide plant spread over the city of Bhopal. Thousands died immediately, and many more suffered from the long-term effects of the exposure, such as respiratory issues, blindness, and birth defects. The disaster highlighted the need for stringent industrial safety regulations and legal accountability for multinational corporations.",
         disasterType: "Industrial_Disaster",
         imageURLS: ["https://via.placeholder.com/800x600.png?text=Bhopal+Gas+1"],
         postAuthorURL: "https://twitter.com/HistoryChannel",
@@ -273,9 +205,9 @@ export const data = [
     },
     {
         _id: "17",
-        title: "2015 Chennai Floods",
+        title: "2024 Chennai Floods",
         description:
-            "In 2015, Chennai experienced severe flooding caused by continuous heavy rainfall, marking one of the most challenging urban disasters in recent Indian history. The floods submerged major parts of the city, including residential and commercial areas, leading to large-scale damage to property and loss of life. The city came to a standstill as transportation systems, including the airport and railways, were shut down. The disaster exposed the need for better urban planning, particularly regarding drainage systems and the management of water bodies.",
+            "In 2024, Chennai experienced severe flooding caused by continuous heavy rainfall, marking one of the most challenging urban disasters in recent Indian history. The floods submerged major parts of the city, including residential and commercial areas, leading to large-scale damage to property and loss of life. The city came to a standstill as transportation systems, including the airport and railways, were shut down. The disaster exposed the need for better urban planning, particularly regarding drainage systems and the management of water bodies.",
         disasterType: "Flood",
         imageURLS: ["https://via.placeholder.com/800x600.png?text=Chennai+Flood+1"],
         postAuthorURL: "https://twitter.com/AlJazeera",
@@ -290,7 +222,7 @@ export const data = [
     },
     {
         _id: "18",
-        title: "2014 Kashmir Floods",
+        title: "2024 Kashmir Floods",
         description:
             "Intense rainfall in Kashmir triggered some of the worst floods the region has seen in decades. It displaced thousands of residents, caused widespread damage to infrastructure, and submerged large portions of Srinagar. Rescue operations were mounted to evacuate people from their homes, but the floodwaters remained for weeks, making rehabilitation a long and challenging process. The disaster highlighted the vulnerability of the region to climate-induced events, prompting the need for better flood management systems.",
         disasterType: "Flood",
@@ -307,7 +239,7 @@ export const data = [
     },
     {
         _id: "19",
-        title: "1979 Morvi Dam Failure",
+        title: "2024 Morvi Dam Failure",
         description:
             "The Morvi Dam in Gujarat burst due to excessive rainfall, releasing a massive torrent of water that devastated the town of Morvi. This tragic disaster claimed the lives of thousands and is one of India's deadliest dam failures. The floodwaters inundated villages, swept away homes, and left behind unimaginable destruction. The event raised concerns about the safety and maintenance of dam structures in India, leading to stricter regulations for dam construction and management.",
         disasterType: "Dam_Failure",
@@ -324,9 +256,9 @@ export const data = [
     },
     {
         _id: "20",
-        title: "2019 Mumbai Floods",
+        title: "2024 Mumbai Floods",
         description:
-            "Heavy monsoon rains in 2019 led to severe flooding across Mumbai, one of India's largest cities. The waterlogging disrupted transportation, shut down businesses, and claimed several lives. The city, which often faces such floods, struggled with inadequate drainage systems that worsened the situation. The disaster underscored the urgent need for infrastructure improvements to cope with recurring monsoon challenges.",
+            "Heavy monsoon rains in 2024 led to severe flooding across Mumbai, one of India's largest cities. The waterlogging disrupted transportation, shut down businesses, and claimed several lives. The city, which often faces such floods, struggled with inadequate drainage systems that worsened the situation. The disaster underscored the urgent need for infrastructure improvements to cope with recurring monsoon challenges.",
         disasterType: "Flood",
         imageURLS: ["https://via.placeholder.com/800x600.png?text=Mumbai+Floods+1"],
         postAuthorURL: "https://twitter.com/BBCWorld",
@@ -341,7 +273,7 @@ export const data = [
     },
     {
         _id: "21",
-        title: "2020 Cyclone Amphan",
+        title: "2024 Cyclone Amphan",
         description:
             "Cyclone Amphan, one of the most powerful cyclones in recent history, wreaked havoc on the eastern coast of India. It particularly impacted West Bengal and Odisha, causing significant destruction to homes, roads, and farmlands. The cyclone resulted in widespread power outages and forced millions of people to evacuate. The aftermath of the storm saw massive relief operations to aid affected communities.",
         disasterType: "Cyclone",
@@ -358,9 +290,9 @@ export const data = [
     },
     {
         _id: "22",
-        title: "2021 Uttarakhand Glacier Burst",
+        title: "2024 Uttarakhand Glacier Burst",
         description:
-            "In 2021, a glacier burst in the Chamoli district of Uttarakhand triggered catastrophic flooding. The sudden surge of water caused significant damage to hydropower projects and killed several people. The disaster, a stark reminder of the fragility of mountain ecosystems, fueled ongoing debates on the environmental impact of large-scale infrastructure projects in ecologically sensitive regions.",
+            "In 2024, a glacier burst in the Chamoli district of Uttarakhand triggered catastrophic flooding. The sudden surge of water caused significant damage to hydropower projects and killed several people. The disaster, a stark reminder of the fragility of mountain ecosystems, fueled ongoing debates on the environmental impact of large-scale infrastructure projects in ecologically sensitive regions.",
         disasterType: "Glacier_Burst",
         imageURLS: ["https://via.placeholder.com/800x600.png?text=Uttarakhand+Glacier+Burst+1"],
         postAuthorURL: "https://twitter.com/Reuters",
@@ -375,7 +307,7 @@ export const data = [
     },
     {
         _id: "23",
-        title: "2021 Cyclone Tauktae",
+        title: "2024 Cyclone Tauktae",
         description:
             "Cyclone Tauktae made landfall on the western coast of India, particularly impacting Gujarat. The cyclone caused widespread damage, destroying homes, uprooting trees, and causing power outages in many areas. Its high wind speeds and heavy rainfall further exacerbated the devastation, requiring large-scale evacuation efforts to protect lives.",
         disasterType: "Cyclone",
@@ -392,7 +324,7 @@ export const data = [
     },
     {
         _id: "24",
-        title: "2021 Cyclone Yaas",
+        title: "2024 Cyclone Yaas",
         description:
             "Cyclone Yaas hit the eastern coast of India, particularly affecting Odisha and West Bengal. The cyclone brought torrential rain and strong winds that wreaked havoc on coastal areas, destroying homes and livelihoods. Local authorities conducted large-scale evacuation operations, and post-disaster relief efforts focused on providing shelter, food, and medical assistance to affected populations.",
         disasterType: "Cyclone",
@@ -409,7 +341,7 @@ export const data = [
     },
     {
         _id: "25",
-        title: "2022 Assam Floods",
+        title: "2024 Assam Floods",
         description:
             "Severe monsoon rains in 2022 caused catastrophic flooding in Assam, displacing millions of people and causing massive destruction to homes and infrastructure. The scale of the disaster prompted large-scale relief operations, and the affected communities required immediate assistance in the form of food, shelter, and medical aid.",
         disasterType: "Flood",
@@ -426,7 +358,7 @@ export const data = [
     },
     {
         _id: "26",
-        title: "2023 Himachal Pradesh Floods",
+        title: "2024 Himachal Pradesh Floods",
         description:
             "Heavy monsoon rains in 2023 led to massive floods in Himachal Pradesh, causing landslides and road collapses. The disaster claimed several lives and caused significant damage to the region’s infrastructure. The government launched rescue operations to assist those stranded, and efforts to restore road connectivity and essential services were prioritized.",
         disasterType: "Flood",
@@ -443,7 +375,7 @@ export const data = [
     },
     {
         _id: "27",
-        title: "2023 Sikkim Glacier Burst",
+        title: "2024 Sikkim Glacier Burst",
         description:
             "A glacier burst in the Teesta River basin of Sikkim caused widespread flooding in nearby towns and villages. The floodwaters caused massive damage to infrastructure, including roads and bridges, and led to the evacuation of many residents. The event once again raised concerns about the environmental impact of climate change on fragile Himalayan ecosystems.",
         disasterType: "Glacier_Burst",
@@ -460,7 +392,7 @@ export const data = [
     },
     {
         _id: "28",
-        title: "2014 Kashmir Floods",
+        title: "2024 Kashmir Floods",
         description:
             "Intense rainfall in Kashmir triggered some of the worst floods the region has seen in decades. It displaced thousands of residents, caused widespread damage to infrastructure, and submerged large portions of Srinagar. Rescue operations were mounted to evacuate people from their homes, but the floodwaters remained for weeks, making rehabilitation a long and challenging process. The disaster highlighted the vulnerability of the region to climate-induced events, prompting the need for better flood management systems.",
         disasterType: "Flood",
@@ -494,7 +426,7 @@ export const data = [
     },
     {
         _id: "30",
-        title: "2019 Mumbai Floods",
+        title: "2024 Mumbai Floods",
         description:
             "Heavy monsoon rains in 2019 led to severe flooding across Mumbai, one of India's largest cities. The waterlogging disrupted transportation, shut down businesses, and claimed several lives. The city, which often faces such floods, struggled with inadequate drainage systems that worsened the situation. The disaster underscored the urgent need for infrastructure improvements to cope with recurring monsoon challenges.",
         disasterType: "Flood",

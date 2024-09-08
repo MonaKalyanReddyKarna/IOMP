@@ -5,12 +5,12 @@ const LatestPosts = () => {
     return (
         <div className='px-4 w-full'>
             <h2 className='text-3xl text-[#276fb3] font-[900]'>Latest Posts</h2>
-            <div className={"overflow-x-scroll flex gap-8"}>
+            <div className={"flex flex-wrap gap-8 justify-center"}>
             {posts.map((post, index) => (
-                <div key={index} className='my-4 p-4 border border-gray-300 rounded-lg min-w-[500px]'>
+                <div key={index} className='my-4 p-4 border border-gray-300 rounded-lg min-w-[500px] max-w-[500px]'>
                     {/*{post.image && (*/}
                         <img
-                            src="/odishatraindisaster.png"
+                            src={post.image}
                             alt="Post Image"
                             className='w-full h-48 object-cover mb-4 rounded'
                         />

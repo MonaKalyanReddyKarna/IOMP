@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { cn } from "@/lib/utils";
 import { fontDmSans } from "@/lib/fonts";
+import React from "react";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -29,9 +30,12 @@ export default function RootLayout({
           <Navbar />
           <div className="flex-1 mt-20">
             {/* <img className="w-full" src="/ndrf_header.png" alt="" /> */}
-            {children}</div>
-          <Footer />
+            {children}
+
+          </div>
+          {/*<Footer />*/}
         </div>
+
         <Toaster />
       </body>
     </html>
