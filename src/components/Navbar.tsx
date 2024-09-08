@@ -1,6 +1,6 @@
 export function Navbar() {
   return (
-    <div className="bg-white z-50 fixed top-0 border-b w-full h-20 flex justify-between items-center px-6 shadow-sm">
+    <div className="bg-white z-50 fixed top-0 border-b w-full h-20 flex justify-between items-center px-6 shadow-md">
       <div className="text-2xl font-bold tracking-wide text-gray-800 hover:text-gray-600 transition-all duration-200 flex items-center gap-2">
         <a target="_blank" href="https://www.ndrf.gov.in/">
           <img className="w-[5rem] h-[5rem]" src="/ndrf_logo.png" alt="ndrf_logo" />

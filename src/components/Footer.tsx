@@ -4,7 +4,7 @@ export function Footer() {
       <div className="flex flex-col items-center">
         <nav className="flex justify-center space-x-6 mb-6 w-full max-w-3xl">
           <a className="link link-hover text-lg font-semibold">About Us</a>
-          <a className="link link-hover text-lg font-semibold">Contact</a>
+          <a className="link link-hover text-lg font-semibold">Copyright Policy</a>
           <a className="link link-hover text-lg font-semibold">Statistics</a>
           <a className="link link-hover text-lg font-semibold">Configurations</a>
         </nav>

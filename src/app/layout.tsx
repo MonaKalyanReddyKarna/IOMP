@@ -19,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
+        suppressHydrationWarning={true}
         className={cn(
           "min-h-screen bg-background font-dm antialiased",
           fontDmSans.variable
