@@ -82,7 +82,7 @@ const MainMap = () => {
             // Add state boundaries source
             map.current.addSource('state-boundaries', {
                 'type': 'geojson',
-                'data': 'india_states1.json' // Replace with the path to your GeoJSON file
+                'data': 'india_telengana.json' // Replace with the path to your GeoJSON file
             });
             const layerId = 'state-label';
 
