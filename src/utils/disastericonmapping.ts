@@ -6,7 +6,7 @@ const disasterIconMapping: DisasterIconMapping = {
     blizzard: "/disaster/blizzard.png",
     drought: "/disaster/drought.png",
     earthquake: "/disaster/earthquake.png",
-    flood: "./disaster/flood.png",
+    flood: "/disaster/flood.png",
     hurricane: "/disaster/hurricane.png",
     landslide: "/disaster/landslide.png",
     radioactive: "/disaster/radioactive.png",

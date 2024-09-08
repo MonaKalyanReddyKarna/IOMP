@@ -31,9 +31,9 @@ export function DisasterHeader({ disasterData }: DisasterHeaderProps) {
     };
 
     return (
-        <div onClick={handleSectionChange} className='w-full py-4 border-b border-b-gray-300 flex flex-col px-4 gap-2'>
+        <div className='w-full py-4 border-b border-b-gray-300 flex flex-col px-4 gap-2'>
             <div className='flex flex-row gap-4'>
-                <img className='w-20 h-20' src={getDisasterIcon(disasterData?.disasterType?.toLowerCase())} alt={disasterData.disasterType} />
+                <img className='w-20 h-20' src={getDisasterIcon(disasterData.disasterType.toLowerCase())} alt={disasterData.disasterType} />
                 <div className="flex flex-col">
                     <p className='text-[#276fb3] font-[900] text-4xl'>
                         {disasterData.title}
