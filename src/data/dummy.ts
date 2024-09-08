@@ -2,15 +2,23 @@ export const data = [
     {
         _id: "1",
         title: "2024 Gujarat Floods",
-        description:
-            "Gujarat, India experienced severe flooding in late August 2024, resulting in the loss of lives, damage to infrastructure, and evacuation of people. Atleast 49 dead, 37,000 rescued amid cyclonic storm Asna's aftermath.",
+        description: "As of August 26, 2024, Gujarat is facing severe flooding and disruptions due to a significant weather disturbance that originated as a low-pressure area over north Madhya Pradesh on August 25. This disturbance has intensified into a deep depression, currently centered over north Gujarat and neighboring areas of southeast Rajasthan. The system, moving westward at a speed of 10 km/h, is now positioned approximately 90 km east-southeast of Deesa, 110 km northeast of Ahmedabad, 180 km northeast of Surendranagar, and 330 km east-northeast of Bhuj.\n" +
+            "\\n \\n\n" +
+            "Gujarat has been hit hard by torrential rainfall, with Navsari recording the highest at 356 mm, followed by Dangs with 290 mm, Vadodara with 270 mm, and Anand with 268 mm.\n" +
+            "\\n \\n\n" +
+            "The districts of Valsad, Tapi, Navsari, Surat, Narmada, and Panchmahal in South Gujarat have been particularly affected, along with Valsad, Khera, Mahisagar, Panchmahal, Surat, Tapi, Aravalli, and Ahmedabad, where rainfall ranged from 100 mm to 263 mm over the past 24 hours.\n" +
+            "\\n \\n\n" +
+            "The impact of the flooding is widespread, with 12 districts and 143 villages severely affected. Tragically, four lives have been lost, and nine individuals are reported missing.\n" +
+            "\\n \\n\n" +
+            "Additionally, eight people have sustained injuries, and approximately 20,000 individuals have been evacuated from their homes. Rescue operations have been ongoing, with four people successfully rescued so far.\n" +
+            "\\n \\n\n",
         disasterType: "Flood",
         imageURLS: ["https://via.placeholder.com/800x600.png?text=Gujarat+Floods+1"],
         postAuthorURL: "https://twitter.com/ANI/",
         postLink: "https://x.com/ANI/status/1827314543191605303",
         clusterIdentifier: "gujarat_floods_2024",
         timestamp: "2024-08-23T00:00:00Z",
-        location: "Tripura",
+        location: "Gujarat",
         coordinates: {
             lat: 21.309,
             lng: 72.1268,

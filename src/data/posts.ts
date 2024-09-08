@@ -89,4 +89,10 @@ export const posts = [
         platform: "LinkedIn",
         source: "https://linkedin.com/posts/GujaratFloodReliefCamps2024",
     },
+    {
+        description: "Gujarat flood survivors share their harrowing stories. It's a reminder of the importance of timely disaster preparedness and response.",
+        image: "https://th-i.thgim.com/public/incoming/tfa3e2/article67321263.ece/alternates/FREE_1200/PTI09_18_2023_000246A.jpg",
+        platform: "Instagram",
+        source: "https://instagram.com/p/SurvivorStoriesGujarat2024",
+    },
 ];
