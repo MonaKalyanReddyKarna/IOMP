@@ -1,25 +1,33 @@
-import {mainFont} from "@/lib/fonts";
-
 export function Navbar() {
   return (
-    <div className={`bg-white z-50 fixed top-0 border-b w-full h-20 flex justify-between items-center px-6 shadow-md `}>
+    <div
+      className={`bg-white z-50 fixed top-0 border-b w-full h-20 flex justify-between items-center px-6 shadow-md `}
+    >
       <div className="text-2xl font-bold tracking-wide text-gray-800 hover:text-gray-600 transition-all duration-200 flex items-center gap-2">
         <a target="_blank" href="https://www.ndrf.gov.in/">
-          <img className="w-[5rem] h-[5rem]" src="/ndrf_logo.png" alt="ndrf_logo" />
+          <img
+            className="w-[5rem] h-[5rem]"
+            src="/ndrf_logo.png"
+            alt="ndrf_logo"
+          />
         </a>
-        <a href="/">
-          The National Disaster Response Force (NDRF)
-        </a>
+        <a href="/">The National Disaster Response Force (NDRF)</a>
       </div>
       <div className="flex items-center gap-8">
-        <NavLink href="/">Statistics</NavLink>
+        <NavLink href="/statistics">Statistics</NavLink>
         <NavLink href="/configurations">Configurations</NavLink>
       </div>
     </div>
   );
 }
 
-function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
+function NavLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
   return (
     <a
       href={href}
