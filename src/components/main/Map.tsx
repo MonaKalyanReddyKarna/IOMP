@@ -1,12 +1,15 @@
 "use client"
 import React, {useRef, useEffect, useState} from 'react';
-import mapboxgl, {LngLat, Map} from 'mapbox-gl';
+import mapboxgl, {LngLat, LngLatBounds, Map} from 'mapbox-gl';
 import {disasterPoints, stateColors} from "@/data/mapboxdummy";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './map.css';
 import {data} from "@/data/dummy";
 import {useDisasterStore} from "@/zustand/useDisasterStore";
 import {RecenterControl} from "@/lib/MapboxControls";
+import {Loader} from "@/components/Loader";
+import {BounceLoader, ClipLoader, GridLoader, PuffLoader} from "react-spinners";
+
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibXJmbHluIiwiYSI6ImNsd3YzOWswMDBhc3YyaXNheGc3aTRtdTcifQ.vqe0vVgE90a8B2CH9lYjUg';
 
@@ -14,6 +17,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibXJmbHluIiwiYSI6ImNsd3YzOWswMDBhc3YyaXNheGc3a
 const MainMap = () => {
     const disaster = useDisasterStore((state) => state.selectedDisaster);
     const section = useDisasterStore((state) => state.section);
+    const [mapLoadingState, setMapLoadingState] = useState(true);
     const setSection = useDisasterStore((state) => state.setSection);
     const setSelectedDisaster = useDisasterStore((state) => state.setSelectedDisaster);
     const mapContainer = useRef<any>(null);
@@ -39,9 +43,9 @@ const MainMap = () => {
         //     console.log(modifiedData);
         // })();
         if (map.current) return; // initialize map only once
-        const bounds = [
-            [50, -10],   // Southwest coordinates [lng, lat] - extended far south and west
-            [110, 40]    // Northeast coordinates [lng, lat] - extended far north and east
+        const bounds: [number, number, number, number] = [
+            50, -10,   // Southwest coordinates [lng, lat] - extended far south and west
+            110, 40    // Northeast coordinates [lng, lat] - extended far north and east
         ];
         map.current = new mapboxgl.Map({
             container: mapContainer.current,
@@ -143,7 +147,7 @@ const MainMap = () => {
                     }))
                 }
             });
-            map.current.loadImage('location.png', (error, image) => {
+            map.current.loadImage('location.png', (error: any, image: any) => {
                 if (error) throw error;
                 map.current.addImage('custom-icon', image);
 
@@ -164,12 +168,12 @@ const MainMap = () => {
                 });
 
                 // Event listener for showing popup on hover
-                map.current.on('click', 'places', (e)=>{
-                   // console.log(e.features);
-                   setSelectedDisaster(JSON.parse(e.features[0].properties.data));
-                   setSection('disasterinfo');
+                map.current.on('click', 'places', (e: any) => {
+                    // console.log(e.features);
+                    setSelectedDisaster(JSON.parse(e.features[0].properties.data));
+                    setSection('disasterinfo');
                 });
-                map.current.on('mouseenter', 'places', (e) => {
+                map.current.on('mouseenter', 'places', (e: any) => {
 
                     // Change the cursor style as a UI indicator.
                     map.current.getCanvas().style.cursor = 'pointer';
@@ -186,7 +190,6 @@ const MainMap = () => {
                     }
 
 
-
                     // Populate the popup and set its coordinates
                     // based on the feature found.
                     popup.setLngLat(coordinates).setHTML(description).addTo(map.current);
@@ -200,8 +203,10 @@ const MainMap = () => {
 
             });
         });
+        setTimeout(() => {
+            setMapLoadingState(false);
+        }, 1000);
     });
-
 
 
     useEffect(() => {
@@ -217,14 +222,16 @@ const MainMap = () => {
                 essential: true,
                 speed: 3
             });
-            if(currentPopUp.current)
-            currentPopUp.current.remove();
+            if (currentPopUp.current)
+                currentPopUp.current.remove();
             return;
 
         }
-        console.log("TEST",disaster);
-        if(!disaster.coordinates)return;
-        if(!disaster.coordinates.lng || !disaster.coordinates.lat)return;
+        console.log("TEST", disaster);
+        if (!disaster.coordinates) return;
+        if (!disaster.coordinates.lng || !disaster.coordinates.lat) return;
+        if (currentPopUp.current)
+            currentPopUp.current.remove();
         (map.current as Map).flyTo({
             center: [disaster.coordinates.lng, disaster.coordinates.lat],
             zoom: 7,
@@ -248,7 +255,21 @@ const MainMap = () => {
         currentPopUp.current = popup;
     }, [disaster, section]);
     return (
-        <div ref={mapContainer} className="map-container w-full h-full"/>
+        <div className="w-full h-full relative">
+            <div className={`w-full h-full bg-gray-100 absolute z-20 ${mapLoadingState?'':'hidden'} flex flex-col justify-center gap-6 items-center`}>
+                <GridLoader
+                    color={"#2e8bfd"}
+                    loading={mapLoadingState}
+                    size={30}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                />
+                <div className={"text-2xl text-blue-400"}>Loading Map</div>
+            </div>
+            <div ref={mapContainer} className="map-container w-full h-full absolute z-10"/>
+        </div>
+
+
     )
 }
 

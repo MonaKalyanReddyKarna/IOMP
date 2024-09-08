@@ -38,7 +38,7 @@ interface DisasterTableProps {
 
 export function DisasterTable({ disasters }: DisasterTableProps) {
   const [filter, setFilter] = useState("all");
-  const [dateRange, setDateRange] = useState<DateRange>({
+  const [dateRange, setDateRange] = useState<DateRange | undefined>({
     from: null!,
     to: null!,
   });
@@ -51,8 +51,8 @@ export function DisasterTable({ disasters }: DisasterTableProps) {
       (disaster) =>
         (filter === "all" ||
           disaster.disasterType.replace(" ", "").toLowerCase() === filter) &&
-        (!dateRange.from || new Date(disaster.timestamp) >= dateRange.from) &&
-        (!dateRange.to || new Date(disaster.timestamp) <= dateRange.to)
+        (!dateRange?.from || new Date(disaster.timestamp) >= dateRange.from) &&
+        (!dateRange?.to || new Date(disaster.timestamp) <= dateRange.to)
     );
   }, [filter, dateRange]);
   return (
@@ -90,7 +90,7 @@ export function DisasterTable({ disasters }: DisasterTableProps) {
                   className="w-full justify-start text-left font-normal"
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
-                  {dateRange.from ? (
+                  {dateRange?.from ? (
                     dateRange.to ? (
                       <>
                         {format(dateRange.from, "LLL dd, y")} -{" "}
@@ -108,7 +108,7 @@ export function DisasterTable({ disasters }: DisasterTableProps) {
                 <Calendar
                   initialFocus
                   mode="range"
-                  defaultMonth={dateRange.from || new Date()}
+                  defaultMonth={dateRange?.from || new Date()}
                   selected={dateRange}
                   onSelect={setDateRange}
                   numberOfMonths={2}
@@ -137,7 +137,7 @@ export function DisasterTable({ disasters }: DisasterTableProps) {
                 </TableCell>
                 <TableCell>
                   <Link href={disaster.postLink} className="w-fit">
-                    <Badge variant={"secondary"}>
+                    <Badge variant='secondary'>
                       Visit
                       <ExternalLink className="size-3 ml-2" />
                     </Badge>

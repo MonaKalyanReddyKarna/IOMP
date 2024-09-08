@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 
 const API_KEY = '5e07895c5c1f48e9803d869c5ad29a4c';
 
-async function getCoordinates(location) {
+async function getCoordinates(location: any) {
   const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(location)}&key=${API_KEY}`);
   const data = await response.json();
   if (data.results && data.results.length > 0) {
