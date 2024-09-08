@@ -104,7 +104,7 @@ function getDisasterTypesWithFrequency(data: Disaster[]): {
 function getDisastersByYear(data: Disaster[]) {
   const disasterByYear: Record<string, number> = data.reduce(
     (acc: Record<string, number>, event) => {
-      const year = new Date(event.timestamp).getFullYear().toString();
+      const year = format(event.timestamp, "yyyy");
       acc[year] = (acc[year] || 0) + 1;
       return acc;
     },
@@ -194,7 +194,7 @@ export default function StatisticsPage() {
             </div>
 
             <p className="text-xs text-muted-foreground flex w-full justify-between">
-              {format(disasters[1].timestamp, "dd/mm/yyyy")}
+              {format(disasters[1].timestamp, "dd/MM/yyyy")}
             </p>
           </CardContent>
         </Card>
@@ -296,7 +296,7 @@ export default function StatisticsPage() {
                     {disaster.disasterType} in {disaster.location}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    {format(disaster.timestamp, "dd/mm/yyyy")}
+                    {format(disaster.timestamp, "dd/MM/yyyy")}
                   </p>
                 </div>
               </div>
