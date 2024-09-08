@@ -2,7 +2,6 @@
 import React from 'react';
 import Disasters from './Disasters';
 import { useDisasterStore } from '@/zustand/useDisasterStore';
-import DisasterInfo from './DisasterInfo';
 
 const Hero = () => {
     const { disasters } = useDisasterStore();

@@ -26,7 +26,9 @@ export default function RootLayout({
       >
         <div className="relative flex min-h-screen flex-col">
           <Navbar />
-          <div className="flex-1 mt-20">{children}</div>
+          <div className="flex-1 mt-20">
+            {/* <img className="w-full" src="/ndrf_header.png" alt="" /> */}
+            {children}</div>
           <Footer />
         </div>
         <Toaster />
