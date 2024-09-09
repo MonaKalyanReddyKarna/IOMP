@@ -11,7 +11,7 @@ export function Navbar() {
             alt="ndrf_logo"
           />
         </a>
-        <a href="/">The National Disaster Response Force (NDRF)</a>
+        <a href="/">The National Disaster Response Force Portal</a>
       </div>
       <div className="flex items-center gap-8">
         <NavLink href="/statistics">Statistics</NavLink>
