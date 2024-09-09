@@ -14,7 +14,7 @@ interface ConfigBoxProps {
 
 const ConfigBox = ({ configuration }: ConfigBoxProps) => {
     const [status, setStatus] = useState(configuration.status);
-
+    const[value, setValue] = useState(configuration.speed+"");
     return (
         <div className='flex flex-col justify-between w-[30rem] h-[20rem] cursor-pointer rounded-xl border border-gray-300 p-6 shadow-lg hover:shadow-2xl hover:bg-gray-50 transition-all duration-300 ease-in-out'>
             {/* Row 1: Logo and Toggle */}
@@ -34,7 +34,7 @@ const ConfigBox = ({ configuration }: ConfigBoxProps) => {
             </div>
 
             <div>
-                <input type="range" min={1} max={20}></input>
+                <input type="range" min={1} max={20} onChange={(e)=>{setValue(e.currentTarget.value)}} defaultValue={value}></input>
             </div>
 
             {/* Bottom: Status and Speed */}
@@ -43,7 +43,7 @@ const ConfigBox = ({ configuration }: ConfigBoxProps) => {
                     <span className={`h-4 w-4 rounded-full ${status ? 'bg-green-500' : 'bg-red-500'}`}></span>
                     <span className='text-sm font-medium'>{status ? 'Active' : 'Inactive'}</span>
                 </div>
-                <span className='text-gray-500 text-sm'>{`Speed: ${configuration.speed}ms`}</span>
+                <span className='text-gray-500 text-sm'>{`Speed: ${value}ms`}</span>
             </div>
         </div>
     );

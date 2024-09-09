@@ -127,23 +127,6 @@ export const data = [
         },
     },
     {
-        _id: "8",
-        title: "2024 Odisha Train Accident",
-        description:
-            "The 2023 Odisha train accident was a tragic event that shocked the nation, involving the collision of three trains. The incident resulted in the deaths of hundreds of passengers and left many more injured, marking one of the deadliest rail disasters in India. Rescue operations were massive, with teams working tirelessly to find survivors among the wreckage. The scale of the accident also led to significant infrastructure damage and raised concerns about railway safety in the country. Investigations pointed to a signal fault as a potential cause, sparking discussions on the urgent need for railway modernization.",
-        disasterType: "Train_Accident",
-        imageURLS: ["https://via.placeholder.com/800x600.png?text=Odisha+Train+Accident+1"],
-        postAuthorURL: "https://twitter.com/NYTimes",
-        postLink: "https://twitter.com/NYTimes/status/1701212393821719600",
-        clusterIdentifier: "odisha_train_accident_2023",
-        timestamp: "2023-06-02T00:00:00Z",
-        location: "Odisha",
-        coordinates: {
-            lat: 20.5431241,
-            lng: 84.6897321,
-        },
-    },
-    {
         _id: "9",
         title: "2024 Sikkim Glacier Burst",
         description:
@@ -192,23 +175,6 @@ export const data = [
         coordinates: {
             lat: 20.5431241,
             lng: 84.6897321,
-        },
-    },
-    {
-        _id: "16",
-        title: "2024 Bhopal Gas Tragedy",
-        description:
-            "The Bhopal Gas Tragedy, one of the world's worst industrial disasters, occurred on the night of December 3, 2024, when a toxic gas leak from the Union Carbide plant spread over the city of Bhopal. Thousands died immediately, and many more suffered from the long-term effects of the exposure, such as respiratory issues, blindness, and birth defects. The disaster highlighted the need for stringent industrial safety regulations and legal accountability for multinational corporations.",
-        disasterType: "Industrial_Disaster",
-        imageURLS: ["https://via.placeholder.com/800x600.png?text=Bhopal+Gas+1"],
-        postAuthorURL: "https://twitter.com/HistoryChannel",
-        postLink: "https://twitter.com/HistoryChannel/status/1701212393821717900",
-        clusterIdentifier: "bhopal_gas_tragedy_1984",
-        timestamp: "1984-12-03T00:00:00Z",
-        location: "Bhopal",
-        coordinates: {
-            lat: 23.2584857,
-            lng: 77.401989,
         },
     },
     {

@@ -5,7 +5,7 @@ import {Footer} from "@/components/Footer";
 
 const Main = () => {
     return (
-        <div className='w-full h-screen bg-gray-100 flex'>
+        <div className='w-full h-screen bg-gray-100 flex overflow-y-hidden'>
             <div className='w-full lg:w-1/2 bg-gray-100 border-r-2'>
                 <Hero />
             </div>
