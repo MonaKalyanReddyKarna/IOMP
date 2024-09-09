@@ -17,3 +17,15 @@ async function getCoordinates(location: any) {
     throw new Error('No results found');
   }
 }
+
+export function parseNewlines(jsonString: string): { [key: string]: any } {
+  const data = JSON.parse(jsonString);
+
+  for (let key in data) {
+    if (typeof data[key] === 'string') {
+      data[key] = data[key].replace(/\\n/g, '\n');
+    }
+  }
+
+  return data;
+}

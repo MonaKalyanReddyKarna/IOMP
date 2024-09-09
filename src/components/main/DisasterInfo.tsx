@@ -1,11 +1,12 @@
 import { useDisasterStore } from '@/zustand/useDisasterStore';
 import { ArrowLeft, FileText } from 'lucide-react';
 import React from 'react';
+import {parseNewlines} from "@/lib/utils";
 
 const DisasterInfo = () => {
     const disaster = useDisasterStore((state) => state.selectedDisaster);
     const setSection = useDisasterStore((state) => state.setSection);
-
+    const parsedDisaster = parseNewlines(JSON.stringify(disaster));
     return (
         <div className='flex flex-col w-full h-full bg-gray-100 rounded-lg shadow-lg px-4'>
             <button
@@ -19,7 +20,7 @@ const DisasterInfo = () => {
                 <h1 className='text-[#276fb3] font-[900] underline underline-2 text-2xl'>{disaster.title}</h1>
                 <div className='bg-white p-4 rounded-lg shadow-sm'>
                     <h2 className='text-2xl font-bold text-gray-700 '>Disaster Description</h2>
-                    <p className='text-gray-600 mt-2'>{disaster.description}</p>
+                    <p className='text-gray-600 mt-2'>{parsedDisaster.description}</p>
                 </div>
                 <div className='bg-white p-4 rounded-lg shadow-sm'>
                     <h2 className='text-2xl font-bold text-gray-700'>Affected Area</h2>
