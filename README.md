@@ -1,6 +1,7 @@
 # Real-Time Disaster Information Aggregation Software
 
 A comprehensive platform to aggregate, analyze, and display disaster-related data from multiple sources, facilitating efficient and timely disaster response.
+This project was built for SIH Internals at KIIT, 2024
 
 ## Problem Statement
 **Smart India Hackathon 2024 - Problem Statement ID**: 1687  
@@ -65,21 +66,3 @@ This project addresses the need for a unified platform that provides real-time d
 - Pichiyana, V., et al. "Web Scraping using Natural Language Processing," Procedia Computer Science, 2023.
 - Kaur, P., "Sentiment analysis using web scraping for live news data with ML," Materials Today: Proceedings, 2022.
 - Ishiwatari, M., "Leveraging Drones for Effective Disaster Management," Progress in Disaster Science, 2024.
-
----
-
-## Getting Started
-For developers and contributors:
-1. Clone the repository.
-2. Install dependencies using `npm install` for frontend and `pip install -r requirements.txt` for backend.
-3. Set up environment variables for API keys and database connections.
-4. Run the development server.
-
-## License
-Distributed under the MIT License. See `LICENSE` for more information.
-
----
-
-## Contact
-Team ATTENT10N  
-For queries, please contact us via [email@example.com](mailto:email@example.com).
