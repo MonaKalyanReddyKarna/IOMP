@@ -4,7 +4,6 @@ A comprehensive platform to aggregate, analyze, and display disaster-related dat
 This project was built for SIH Internals at KIIT, 2024
 
 ## Problem Statement
-**Smart India Hackathon 2024 - Problem Statement ID**: 1687  
 **Title**: Real-Time Disaster Information Aggregation Software  
 **Theme**: Disaster Management
 
