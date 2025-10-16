@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-const API_KEY = '5e07895c5c1f48e9803d869c5ad29a4c';
+const API_KEY = process.env.NEXT_PUBLIC_OPENCAGE_API_KEY as string;
 
 async function getCoordinates(location: any) {
   const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(location)}&key=${API_KEY}`);

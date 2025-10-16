@@ -9,6 +9,7 @@ interface DisasterStoreState {
     setSection: (section: "disasters" | "disasterinfo") => void;
     selectedDisaster: Disaster;
     setSelectedDisaster: (selectedDisaster: Disaster) => void;
+    addDisaster: (disaster: Disaster) => void;
 }
 
 export const useDisasterStore = create<DisasterStoreState>((set) => ({
@@ -18,4 +19,5 @@ export const useDisasterStore = create<DisasterStoreState>((set) => ({
     setSection: (section) => set({section}),
     selectedDisaster: data[0],
     setSelectedDisaster: (selectedDisaster) => set({selectedDisaster}),
+    addDisaster: (disaster) => set((state) => ({ disasters: [disaster, ...state.disasters] })),
 }));
